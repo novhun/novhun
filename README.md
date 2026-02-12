@@ -130,28 +130,19 @@
   <br />
   <img src="https://komarev.com/ghpvc/?username=novhun&label=Profile%20Views&color=0e75b6&style=flat" alt="profile views" />
 </p>
-# 🚀 DevOps & Cloud Mastery Handbook
 
-<div align="center">
-    
-![DevOps Banner](https://img.shields.io/badge/DEVOPS-MASTERY-ff6b6b?style=for-the-badge)
-![Version](https://img.shields.io/badge/version-2.1.0-4ecdc4?style=for-the-badge)
-![Author](https://img.shields.io/badge/author-Nov_Hun-ffe66d?style=for-the-badge)
-
-**By Nov Hun** • Full Stack DevOps Engineer • 🇰🇭 Cambodia
-
-[![GitHub](https://img.shields.io/badge/GitHub-novhun-181717?style=flat&logo=github)](https://github.com/novhun)
-[![Portfolio](https://img.shields.io/badge/Portfolio-DevOps_Engineer-00c7b7?style=flat&logo=vercel)](https://github.com/novhun)
-
-</div>
-
----
 
 ## 📖 Interactive DevOps Handbook
 
-Access the complete DevOps & Cloud Mastery Handbook directly in your browser:
+<p align="center">
+  <a href="https://novhun.github.io/novhun" target="_blank">
+    <img src="https://img.shields.io/badge/Open%20Website-Live%20Preview-blue?style=for-the-badge&logo=google-chrome&logoColor=white"/>
+  </a>
+</p>
 
-[![Website Preview](https://image.thum.io/get/width/1200/https://novhun.github.io/novhun)](https://novhun.github.io/novhun)
-
-👉 Click the image to open the full website
+<p align="center">
+  <a href="https://novhun.github.io/novhun">
+    <img src="https://image.thum.io/get/width/1000/https://novhun.github.io/novhun"/>
+  </a>
+</p>
 
