@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 DevOps & Cloud Mastery Handbook | Nov Hun</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            line-height: 1.6;
+            color: #2d3748;
+            padding: 0;
+            margin: 0;
+        }
+
+        .handbook-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Glassmorphism Card Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(120deg, #1a202c 0%, #2d3748 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 30px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "🎯";
+            position: absolute;
+            right: -50px;
+            bottom: -50px;
+            font-size: 300px;
+            opacity: 0.05;
+            transform: rotate(-10deg);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ffe66d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .hero-badge {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Table of Contents */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .toc-item {
+            background: #f7fafc;
+            padding: 1rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .toc-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .toc-icon {
+            font-size: 1.5rem;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .toc-level {
+            background: #667eea;
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 1rem;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: #1a1e24 !important;
+            border-radius: 16px !important;
+            padding: 1.5rem !important;
+            margin: 1.5rem 0 !important;
+            overflow-x: auto;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        pre code {
+            font-family: 'Fira Code', monospace !important;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #e2e8f0;
+        }
+
+        .code-header {
+            background: #0f1116;
+            color: #e2e8f0;
+            padding: 0.5rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(102,126,234,0.3);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        /* Command Cards */
+        .command-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .command-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.2rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .command-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .command-card code {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .checklist li i {
+            color: #48bb78;
+        }
+
+        /* Author Section */
+        .author-card {
+            background: linear-gradient(135deg, #1a202c, #2d3748);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .author-avatar {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .author-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .author-social a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .author-social a:hover {
+            transform: translateY(-5px);
+            color: #ff6b6b;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ffe66d);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .handbook-wrapper {
+                padding: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Tooltips */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+            border-bottom: 1px dashed #667eea;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: #1a202c;
+            color: #fff;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Table Styles */
+        .modern-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .modern-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+        }
+
+        .modern-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .modern-table tr:hover {
+            background: #f7fafc;
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tag-beginner { background: #c6f6d5; color: #22543d; }
+        .tag-intermediate { background: #feebc8; color: #744210; }
+        .tag-advanced { background: #fed7d7; color: #742a2a; }
+        .tag-critical { background: #fed7e2; color: #702459; }
+
+        /* Mermaid Diagram Fallback */
+        .mermaid-fallback {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px dashed #667eea;
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #2d3748;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #667eea;
+        }
+    </style>
+</head>
+<body>
+
+<div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div class="handbook-wrapper">
+    
+    <!-- HERO SECTION -->
+    <div class="hero glass-card">
+        <h1>🚀 DEVOPS & CLOUD <br>MASTERY HANDBOOK</h1>
+        <p style="font-size: 1.2rem; color: #e2e8f0; margin-bottom: 1rem;">From Zero to Hero: Infrastructure, Automation & Scalability</p>
+        
+        <div class="hero-badges">
+            <span class="hero-badge">🐳 Docker</span>
+            <span class="hero-badge">☸️ Kubernetes</span>
+            <span class="hero-badge">📜 Ansible</span>
+            <span class="hero-badge">🔧 CI/CD</span>
+            <span class="hero-badge">☁️ Cloud</span>
+            <span class="hero-badge">🛡️ Security</span>
+        </div>
+        
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <span style="color: #a0aec0;"><i class="fas fa-user"></i> Nov Hun</span>
+            <span style="color: #a0aec0;"><i class="fas fa-map-marker-alt"></i> Phnom Penh, Cambodia 🇰🇭</span>
+            <span style="color: #a0aec0;"><i class="fas fa-calendar"></i> 2025 Edition</span>
+        </div>
+    </div>
+    
+    <!-- TABLE OF CONTENTS -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-list"></i></div>
+            <h2 class="section-title">📋 Table of Contents</h2>
+        </div>
+        
+        <div class="toc-grid">
+            <div class="toc-item">
+                <span class="toc-icon">🐧</span>
+                <div><strong>Ubuntu Server</strong><br><small>System Hardening</small></div>
+                <span class="toc-level">Beginner</span>
+            </div>
+            <div class="toc-item">
+                <span class="toc-icon">🔗</span>
+                <div><strong>Git Workflow</strong><br><small>Branching Strategies</small></div>
+                <span class="toc-level">Beginner</span>
+            </div>
+            <div class="toc-item">
+                <span class="toc-icon">🐳</span>
+                <div><strong>Docker</strong><br><small>Containerization</small></div>
+                <span class="toc-level">Intermediate</span>
+            </div>
+            <div class="toc-item">
+                <span class="toc-icon">⚙️</span>
+                <div><strong>Docker Compose</strong><br><small>Multi-Container</small></div>
+                <span class="toc-level">Intermediate</span>
+            </div>
+            <div class="toc-item">
+                <span class="toc-icon">🌐</span>
+                <div><strong>Nginx</strong><br><small>Reverse Proxy</small></div>
+                <span class="toc-level">Intermediate</span>
+            </div>
+            <div class="toc-item">
+                <span class="toc-icon">☸️</span>
+                <div><strong>Kubernetes</strong><br><small>Orchestration</small></div>
+                <span class="toc-level">Advanced</span>
+            </div>
+            <div class="toc-item">
+                <span class="toc-icon">📜</span>
+                <div><strong>Ansible</strong><br><small>Infrastructure as Code</small></div>
+                <span class="toc-level">Advanced</span>
+            </div>
+            <div class="toc-item">
+                <span class="toc-icon">🔄</span>
+                <div><strong>CI/CD</strong><br><small>GitHub Actions, Jenkins</small></div>
+                <span class="toc-level">Intermediate</span>
+            </div>
+            <div class="toc-item">
+                <span class="toc-icon">☁️</span>
+                <div><strong>Cloud Storage</strong><br><small>S3 / R2</small></div>
+                <span class="toc-level">Intermediate</span>
+            </div>
+            <div class="toc-item">
+                <span class="toc-icon">🛡️</span>
+                <div><strong>Security</strong><br><small>Zero Trust</small></div>
+                <span class="toc-level">Critical</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 1️⃣ UBUNTU SERVER -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">🐧</div>
+            <h2 class="section-title">1. Ubuntu Server Essentials</h2>
+        </div>
+        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>The Foundation of Every Production System</em></p>
+        
+        <h3 style="margin-bottom: 1rem;">📦 System Initialization & Hardening</h3>
+        
+        <div class="code-header">
+            <span><i class="fas fa-terminal"></i> Ubuntu Server Setup</span>
+            <span><i class="fas fa-copy copy-trigger"></i></span>
+        </div>
+        <pre><code class="language-bash"># 🔄 Full system update & upgrade
+sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+
+# 🧰 Install essential toolkit
+sudo apt install -y \
+    git \
+    curl \
+    wget \
+    unzip \
+    htop \
+    net-tools \
+    vim \
+    tmux \
+    build-essential \
+    software-properties-common</code></pre>
+        
+        <h3 style="margin: 2rem 0 1rem;">👥 User Management & Access Control</h3>
+        <pre><code class="language-bash"># 🆕 Create deployment user
+sudo adduser --gecos "" devops
+sudo usermod -aG sudo devops
+
+# 🔑 SSH key setup
+sudo mkdir -p /home/devops/.ssh
+sudo touch /home/devops/.ssh/authorized_keys
+sudo chmod 700 /home/devops/.ssh
+sudo chmod 600 /home/devops/.ssh/authorized_keys
+sudo chown -R devops:devops /home/devops/.ssh</code></pre>
+        
+        <h3 style="margin: 2rem 0 1rem;">🛡️ SSH Fortification</h3>
+        <pre><code class="language-bash"># /etc/ssh/sshd_config
+# 🔐 Recommended secure configuration
+PermitRootLogin no                   # NEVER allow root login
+PasswordAuthentication no            # SSH keys ONLY
+PubkeyAuthentication yes            # Enable key-based auth
+MaxAuthTries 3                      # Limit brute force attempts
+ClientAliveInterval 300             # Drop inactive sessions
+ClientAliveCountMax 2              # Max keepalive messages</code></pre>
+    </div>
+    
+    <!-- 2️⃣ GIT WORKFLOW -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">🔗</div>
+            <h2 class="section-title">2. Git Workflow Mastery</h2>
+        </div>
+        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>Version Control Done Right</em></p>
+        
+        <pre><code class="language-bash"># 👤 Identity setup
+git config --global user.name "Nov Hun"
+git config --global user.email "dev@novhun.dev"
+git config --global init.defaultBranch main
+git config --global pull.rebase true
+
+# 🌿 Feature branch workflow
+git checkout -b feature/authentication-module
+git add .
+git commit -m "feat(auth): implement JWT authentication
+
+- Add JWT token generation and validation
+- Implement login/signup endpoints
+- Add password encryption with bcrypt
+- Write unit tests for auth service
+
+Resolves: #42"
+git push -u origin feature/authentication-module
+
+# 📦 Tagging production releases
+git tag -a v1.2.0 -m "Release v1.2.0 - Stable API with rate limiting"
+git push origin v1.2.0</code></pre>
+    </div>
+    
+    <!-- 3️⃣ DOCKER -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">🐳</div>
+            <h2 class="section-title">3. Docker Containerization</h2>
+        </div>
+        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>Build Once, Run Anywhere</em></p>
+        
+        <h3 style="margin-bottom: 1rem;">⚡ Docker Engine Installation</h3>
+        <pre><code class="language-bash"># 📥 Install from official repository
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
+# 🚀 Post-installation steps
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo usermod -aG docker $USER
+newgrp docker</code></pre>
+        
+        <h3 style="margin: 2rem 0 1rem;">🏗️ Production-Ready Dockerfile</h3>
+        <pre><code class="language-dockerfile"># Multi-stage build for optimal image size
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+
+# Production stage
+FROM node:18-alpine
+
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+
+WORKDIR /app
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
+COPY --chown=nextjs:nodejs /app .
+
+USER nextjs
+
+EXPOSE 3000
+CMD ["npm", "start"]</code></pre>
+        
+        <div class="command-grid">
+            <div class="command-card">
+                <code>docker ps -a</code>
+                <p style="margin-top: 0.5rem; color: #4a5568;">List all containers</p>
+            </div>
+            <div class="command-card">
+                <code>docker build -t myapp .</code>
+                <p style="margin-top: 0.5rem; color: #4a5568;">Build image with tag</p>
+            </div>
+            <div class="command-card">
+                <code>docker run -d -p 80:3000 myapp</code>
+                <p style="margin-top: 0.5rem; color: #4a5568;">Run container in background</p>
+            </div>
+            <div class="command-card">
+                <code>docker logs -f myapp --tail 100</code>
+                <p style="margin-top: 0.5rem; color: #4a5568;">View live logs</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 4️⃣ DOCKER COMPOSE -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">⚙️</div>
+            <h2 class="section-title">4. Docker Compose Orchestration</h2>
+        </div>
+        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>Multi-Container Applications Made Simple</em></p>
+        
+        <pre><code class="language-yaml"># docker-compose.yml
+version: '3.8'
+
+services:
+  # 🌐 Frontend service
+  frontend:
+    build: ./frontend
+    container_name: react-app
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  # ⚙️ Backend API
+  backend:
+    build: ./backend
+    container_name: node-api
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - app-network
+
+  # 🗄️ Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres-db
+    environment:
+      - POSTGRES_DB=myapp
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+volumes:
+  postgres-data:
+
+networks:
+  app-network:
+    driver: bridge</code></pre>
+        
+        <div class="command-grid">
+            <div class="command-card">
+                <code>docker-compose up -d</code>
+                <p style="margin-top: 0.5rem; color: #4a5568;">Start all services</p>
+            </div>
+            <div class="command-card">
+                <code>docker-compose logs -f</code>
+                <p style="margin-top: 0.5rem; color: #4a5568;">View aggregated logs</p>
+            </div>
+            <div class="command-card">
+                <code>docker-compose down -v</code>
+                <p style="margin-top: 0.5rem; color: #4a5568;">Stop and remove volumes</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 5️⃣ NGINX -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">🌐</div>
+            <h2 class="section-title">5. Nginx Reverse Proxy & Load Balancing</h2>
+        </div>
+        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>The Ultimate Web Server & Gateway</em></p>
+        
+        <pre><code class="language-nginx"># /etc/nginx/sites-available/production-app
+upstream backend_cluster {
+    least_conn;
+    server backend1:3000 weight=3;
+    server backend2:3000 weight=2;
+    server backend3:3000 backup;
+    keepalive 32;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name api.novhun.dev;
+
+    # SSL Configuration
+    ssl_certificate /etc/letsencrypt/live/api.novhun.dev/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.novhun.dev/privkey.pem;
+    
+    # Security headers
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    
+    location /api/ {
+        proxy_pass http://backend_cluster/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}</code></pre>
+        
+        <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem;">
+            <h4 style="margin-bottom: 0.5rem;"><i class="fas fa-link" style="color: #3182ce;"></i> Enable Site</h4>
+            <pre><code class="language-bash">sudo ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx</code></pre>
+        </div>
+    </div>
+    
+    <!-- 6️⃣ KUBERNETES -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">☸️</div>
+            <h2 class="section-title">6. Kubernetes Orchestration</h2>
+        </div>
+        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>Enterprise-Grade Container Orchestration</em></p>
+        
+        <pre><code class="language-yaml"># deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+  namespace: production
+spec:
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: app
+        image: novhun/web-app:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-app-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: web-app
+  ports:
+  - port: 80
+    targetPort: 3000</code></pre>
+        
+        <div class="command-grid">
+            <div class="command-card">
+                <code>kubectl get nodes</code>
+                <p>List cluster nodes</p>
+            </div>
+            <div class="command-card">
+                <code>kubectl apply -f deploy.yaml</code>
+                <p>Deploy application</p>
+            </div>
+            <div class="command-card">
+                <code>kubectl rollout status deploy/web-app</code>
+                <p>Check deployment status</p>
+            </div>
+            <div class="command-card">
+                <code>kubectl logs -f deploy/web-app</code>
+                <p>Stream container logs</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 7️⃣ ANSIBLE -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">📜</div>
+            <h2 class="section-title">7. Ansible Automation</h2>
+        </div>
+        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>Infrastructure as Code at Scale</em></p>
+        
+        <h4 style="margin-bottom: 1rem;">📋 Production Inventory</h4>
+        <pre><code class="language-ini"># inventory/production.ini
+[webservers]
+web-01 ansible_host=10.0.1.10 ansible_user=devops
+web-02 ansible_host=10.0.1.11 ansible_user=devops
+
+[databases]
+db-01 ansible_host=10.0.2.10 ansible_user=devops
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3</code></pre>
+        
+        <h4 style="margin: 2rem 0 1rem;">🎭 Advanced Playbook</h4>
+        <pre><code class="language-yaml">---
+- name: 🚀 Production Deployment Playbook
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: 📦 Install Docker
+      apt:
+        name: docker.io
+        state: present
+    
+    - name: 🐳 Start Docker service
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+    
+    - name: 🎯 Deploy application
+      docker_container:
+        name: web-app
+        image: novhun/web-app:latest
+        state: started
+        ports:
+          - "3000:3000"</code></pre>
+    </div>
+    
+    <!-- 8️⃣ CI/CD -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">🔄</div>
+            <h2 class="section-title">8. CI/CD Pipelines</h2>
+        </div>
+        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>Automated Testing & Deployment</em></p>
+        
+        <h4 style="margin-bottom: 1rem;">🤖 GitHub Actions Advanced Pipeline</h4>
+        <pre><code class="language-yaml"># .github/workflows/cd-pipeline.yml
+name: 🚀 Production Deployment Pipeline
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  test:
+    name: 🧪 Test & Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - run: npm ci
+      - run: npm test
+      
+  build:
+    name: 🐳 Build & Push
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest</code></pre>
+        
+        <h4 style="margin: 2rem 0 1rem;">📊 Jenkins Pipeline</h4>
+        <pre><code class="language-groovy">// Jenkinsfile
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building application...'
+                sh 'docker build -t myapp:latest .'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh 'npm test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying to production...'
+                sh 'kubectl apply -f deployment.yaml'
+            }
+        }
+    }
+}</code></pre>
+    </div>
+    
+    <!-- 9️⃣ CLOUD STORAGE -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">☁️</div>
+            <h2 class="section-title">9. Cloud Storage Mastery</h2>
+        </div>
+        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>AWS S3 & Cloudflare R2 Integration</em></p>
+        
+        <pre><code class="language-bash"># 📦 AWS CLI Installation
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+# 📤 Upload with encryption
+aws s3 cp ./backup.sql s3://production-backups/ \
+  --sse AES256 \
+  --storage-class STANDARD_IA
+
+# 🔄 Sync with delete option
+aws s3 sync ./dist/ s3://myapp-static-bucket/ \
+  --delete \
+  --cache-control "max-age=3600"</code></pre>
+        
+        <div style="background: linear-gradient(135deg, #667eea10, #764ba210); padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem;">
+            <h4 style="margin-bottom: 0.5rem; color: #5a67d8;">⚡ Cloudflare R2</h4>
+            <pre><code class="language-bash"># Create bucket
+wrangler r2 bucket create production-assets
+
+# Upload file
+wrangler r2 object put production-assets/config.json \
+  --file ./config.json
+
+# Generate presigned URL
+wrangler r2 object sign production-assets/report.pdf \
+  --duration 3600</code></pre>
+        </div>
+    </div>
+    
+    <!-- 🔟 SECURITY -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">🛡️</div>
+            <h2 class="section-title">10. Security Hardening & Best Practices</h2>
+        </div>
+        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>Zero Trust Security Architecture</em></p>
+        
+        <h4 style="margin-bottom: 1rem;">🔐 System Hardening Script</h4>
+        <pre><code class="language-bash">#!/bin/bash
+# security-hardening.sh
+
+# 1️⃣ Firewall configuration
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw --force enable
+
+# 2️⃣ Fail2ban installation
+sudo apt install fail2ban -y
+sudo systemctl enable fail2ban
+sudo systemctl start fail2ban
+
+# 3️⃣ Automatic security updates
+sudo apt install unattended-upgrades -y
+sudo dpkg-reconfigure -plow unattended-upgrades
+
+echo "✅ System hardening complete!"</code></pre>
+        
+        <h4 style="margin: 2rem 0 1rem;">✅ Production Security Checklist</h4>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 12px;">
+                <h5 style="margin-bottom: 1rem; color: #2d3748;">🖥️ Server Level</h5>
+                <ul class="checklist">
+                    <li><i class="fas fa-check-circle"></i> SSH root login disabled</li>
+                    <li><i class="fas fa-check-circle"></i> Password authentication disabled</li>
+                    <li><i class="fas fa-check-circle"></i> Fail2ban configured</li>
+                    <li><i class="fas fa-check-circle"></i> UFW firewall active</li>
+                </ul>
+            </div>
+            
+            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 12px;">
+                <h5 style="margin-bottom: 1rem; color: #2d3748;">🐳 Container Level</h5>
+                <ul class="checklist">
+                    <li><i class="fas fa-check-circle"></i> Running as non-root user</li>
+                    <li><i class="fas fa-check-circle"></i> Read-only root filesystem</li>
+                    <li><i class="fas fa-check-circle"></i> Resource limits configured</li>
+                    <li><i class="fas fa-check-circle"></i> No privileged containers</li>
+                </ul>
+            </div>
+            
+            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 12px;">
+                <h5 style="margin-bottom: 1rem; color: #2d3748;">🌐 Network Level</h5>
+                <ul class="checklist">
+                    <li><i class="fas fa-check-circle"></i> TLS 1.3 only</li>
+                    <li><i class="fas fa-check-circle"></i> HSTS enabled</li>
+                    <li><i class="fas fa-check-circle"></i> Rate limiting configured</li>
+                    <li><i class="fas fa-check-circle"></i> Network policies active</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- DEVOPS WORKFLOW -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">🎯</div>
+            <h2 class="section-title">Complete DevOps Workflow</h2>
+        </div>
+        
+        <div class="mermaid-fallback">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 1rem;">
+                <span style="padding: 0.8rem 1.5rem; background: #667eea; color: white; border-radius: 30px;">💻 Code</span>
+                <span style="padding: 0.8rem 1.5rem; background: #4ecdc4; color: white; border-radius: 30px;">→ 📦 Git</span>
+                <span style="padding: 0.8rem 1.5rem; background: #ff6b6b; color: white; border-radius: 30px;">→ 🤖 CI/CD</span>
+                <span style="padding: 0.8rem 1.5rem; background: #ffe66d; color: #1a202c; border-radius: 30px;">→ 🐳 Docker</span>
+                <span style="padding: 0.8rem 1.5rem; background: #a0aec0; color: white; border-radius: 30px;">→ ☸️ K8s</span>
+                <span style="padding: 0.8rem 1.5rem; background: #48bb78; color: white; border-radius: 30px;">→ 🌐 Nginx</span>
+                <span style="padding: 0.8rem 1.5rem; background: #9f7aea; color: white; border-radius: 30px;">→ ☁️ Cloud</span>
+            </div>
+            <p style="margin-top: 2rem; color: #4a5568; font-style: italic;">Continuous Integration • Continuous Deployment • Continuous Monitoring</p>
+        </div>
+    </div>
+    
+    <!-- COMMAND CHEAT SHEET -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">📚</div>
+            <h2 class="section-title">Production Command Cheat Sheet</h2>
+        </div>
+        
+        <table class="modern-table">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>🐧 Ubuntu</td>
+                    <td><code style="background: #2d3748; color: white;">sudo journalctl -u docker -f</code></td>
+                    <td>View Docker daemon logs</td>
+                </tr>
+                <tr>
+                    <td>🔗 Git</td>
+                    <td><code style="background: #2d3748; color: white;">git bisect start</code></td>
+                    <td>Find breaking changes</td>
+                </tr>
+                <tr>
+                    <td>🐳 Docker</td>
+                    <td><code style="background: #2d3748; color: white;">docker system df</code></td>
+                    <td>Show disk usage</td>
+                </tr>
+                <tr>
+                    <td>☸️ K8s</td>
+                    <td><code style="background: #2d3748; color: white;">kubectl top pods</code></td>
+                    <td>Show pod metrics</td>
+                </tr>
+                <tr>
+                    <td>📜 Ansible</td>
+                    <td><code style="background: #2d3748; color: white;">ansible all -m ping</code></td>
+                    <td>Test connectivity</td>
+                </tr>
+                <tr>
+                    <td>☁️ Cloud</td>
+                    <td><code style="background: #2d3748; color: white;">aws s3 ls --human-readable</code></td>
+                    <td>List buckets with size</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- CERTIFICATION ROADMAP -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">🏆</div>
+            <h2 class="section-title">Certification Roadmap</h2>
+        </div>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+            <div style="background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 600;">
+                📌 01. KCNA
+            </div>
+            <div style="background: linear-gradient(135deg, #34d399, #10b981); color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 600;">
+                📌 02. Terraform Associate
+            </div>
+            <div style="background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 600;">
+                📌 03. AWS Solutions Architect
+            </div>
+            <div style="background: linear-gradient(135deg, #f87171, #ef4444); color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 600;">
+                📌 04. CKA
+            </div>
+            <div style="background: linear-gradient(135deg, #c084fc, #a855f7); color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 600;">
+                📌 05. GitHub Actions
+            </div>
+        </div>
+    </div>
+    
+    <!-- PRO TIPS -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">💡</div>
+            <h2 class="section-title">Pro Tips</h2>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+            <div style="background: #fef3c7; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #f59e0b;">
+                <h4 style="margin-bottom: 0.5rem; color: #92400e;">🚀 One-liner Health Check</h4>
+                <pre style="margin: 0; background: #1a202c !important;"><code style="color: #e2e8f0;">curl -s https://api.novhun.dev/health | jq . && \
+  kubectl get pods -n production | grep -v Running</code></pre>
+            </div>
+            
+            <div style="background: #e6fffa; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #319795;">
+                <h4 style="margin-bottom: 0.5rem; color: #1e4e4b;">🔍 Debug Failing Pods</h4>
+                <pre style="margin: 0; background: #1a202c !important;"><code style="color: #e2e8f0;">kubectl get pods -n production | grep -v Running | \
+  xargs -I {} kubectl describe pod {} -n production</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <!-- DEVOPS MANIFESTO -->
+    <div class="glass-card">
+        <div class="section-header">
+            <div class="section-icon">🌟</div>
+            <h2 class="section-title">DevOps Manifesto</h2>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: center;">
+            <div>
+                <div style="font-size: 3rem; margin-bottom: 0.5rem;">🤝</div>
+                <h4>Collaboration</h4>
+                <p style="color: #718096;">over silos</p>
+            </div>
+            <div>
+                <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔄</div>
+                <h4>Automation</h4>
+                <p style="color: #718096;">over manual processes</p>
+            </div>
+            <div>
+                <div style="font-size: 3rem; margin-bottom: 0.5rem;">📊</div>
+                <h4>Metrics</h4>
+                <p style="color: #718096;">over intuition</p>
+            </div>
+            <div>
+                <div style="font-size: 3rem; margin-bottom: 0.5rem;">🚀</div>
+                <h4>Iteration</h4>
+                <p style="color: #718096;">over perfection</p>
+            </div>
+            <div>
+                <div style="font-size: 3rem; margin-bottom: 0.5rem;">🛡️</div>
+                <h4>Security</h4>
+                <p style="color: #718096;">integrated, not bolted on</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AUTHOR SECTION -->
+    <div class="author-card">
+        <div class="author-avatar">👨‍💻</div>
+        <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Nov Hun</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 1rem; color: #e2e8f0;">Full Stack Developer • DevOps Engineer • Cloud Architect</p>
+        <p style="margin-bottom: 2rem; color: #a0aec0;">"Empowering teams with cloud-native solutions and automated infrastructure"</p>
+        
+        <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;">
+            <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1.5rem; border-radius: 50px; color: white;">🇰🇭 Cambodia</span>
+            <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1.5rem; border-radius: 50px; color: white;">5+ Years Experience</span>
+            <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1.5rem; border-radius: 50px; color: white;">Cloud Native Ambassador</span>
+        </div>
+        
+        <div class="author-social">
+            <a href="https://github.com/novhun" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+        
+        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 2rem 0;">
+        
+        <div style="display: flex; justify-content: space-between; color: #a0aec0; font-size: 0.9rem;">
+            <span>📅 Last Updated: February 2025</span>
+            <span>📝 Version: 2.1.0</span>
+            <span>🎯 Status: Production Ready</span>
+        </div>
+        
+        <div style="margin-top: 2rem;">
+            <p style="font-size: 1.5rem; font-weight: 700; background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ffe66d); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                "DevOps is not a tool, it's a culture 🚀"
+            </p>
+            <p style="color: #e2e8f0; margin-top: 0.5rem;">Keep learning, keep shipping, keep improving! 💪</p>
+            <p style="color: #ff6b6b; margin-top: 1rem; font-size: 1.2rem;">⭐ Star this handbook if it helped you!</p>
+        </div>
+    </div>
+    
+</div>
+
+<script>
+    // Initialize syntax highlighting
+    hljs.highlightAll();
+    
+    // Progress bar
+    window.onscroll = function() {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        document.getElementById("progressBar").style.width = scrolled + "%";
+    };
+    
+    // Copy button functionality
+    document.querySelectorAll('.copy-trigger').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const code = this.closest('.code-header').nextElementSibling.querySelector('code');
+            navigator.clipboard.writeText(code.innerText);
+            this.innerHTML = '<i class="fas fa-check"></i>';
+            setTimeout(() => { this.innerHTML = '<i class="fas fa-copy"></i>'; }, 2000);
+        });
+    });
+    
+    // Add copy buttons to code blocks
+    document.querySelectorAll('pre').forEach(block => {
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'copy-btn';
+        copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+        copyBtn.onclick = function() {
+            navigator.clipboard.writeText(block.querySelector('code').innerText);
+            this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(() => { this.innerHTML = '<i class="fas fa-copy"></i> Copy'; }, 2000);
+        };
+        block.style.position = 'relative';
+        block.appendChild(copyBtn);
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+    
+    // Animate on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('.glass-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        observer.observe(card);
+    });
+</script>
+
+<style>
+    /* Additional styles for better mobile responsiveness */
+    @media (max-width: 768px) {
+        .handbook-wrapper {
+            padding: 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 2rem;
+        }
+        
+        .hero-badges {
+            gap: 0.5rem;
+        }
+        
+        .hero-badge {
+            padding: 0.3rem 0.8rem;
+            font-size: 0.8rem;
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+        }
+        
+        .section-icon {
+            width: 45px;
+            height: 45px;
+            font-size: 1.8rem;
+        }
+        
+        .modern-table {
+            display: block;
+            overflow-x: auto;
+        }
+        
+        .author-card {
+            padding: 1.5rem;
+        }
+        
+        .author-avatar {
+            font-size: 3rem;
+        }
+        
+        .author-card h2 {
+            font-size: 1.8rem;
+        }
+    }
+    
+    /* Print styles */
+    @media print {
+        body {
+            background: white;
+        }
+        
+        .glass-card {
+            box-shadow: none;
+            border: 1px solid #e2e8f0;
+            break-inside: avoid;
+        }
+        
+        .hero {
+            -webkit-text-fill-color: black;
+            color: black;
+            background: #f7fafc;
+        }
+        
+        .hero h1 {
+            -webkit-text-fill-color: #1a202c;
+        }
+        
+        .progress-container {
+            display: none;
+        }
+        
+        .copy-btn {
+            display: none;
+        }
+        
+        pre {
+            break-inside: avoid;
+        }
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #764ba2, #667eea);
+    }
+    
+    /* Selection color */
+    ::selection {
+        background: #667eea;
+        color: white;
+    }
+    
+    /* Loading animation */
+    .glass-card {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+</style>
+
+</body>
+</html>
