@@ -95,20 +95,6 @@
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=novhun&theme=tokyo-night&hide_border=true" />
 </p>
 
----
-
-## 🐍 Contribution Snake
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/novhun/novhun/output/github-contribution-grid-snake.svg" alt="snake animation" />
-</p>
-
-<p align="center">
-  <b>Watching my commits grow and get eaten every day!</b>
-</p>
-
----
-
 ## 🚀 Featured Projects
 
 - 🏢 **Management Systems** – Enterprise solutions for Schools/Companies.
