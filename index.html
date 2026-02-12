@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 DevOps & Cloud Mastery Handbook | Nov Hun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>🚀 DevOps & Cloud Mastery | Nov Hun</title>
     
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,6 +14,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     
     <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5a67d8;
+            --secondary: #764ba2;
+            --accent: #ff6b6b;
+            --success: #48bb78;
+            --warning: #f59e0b;
+            --danger: #f56565;
+            --dark: #1a202c;
+            --gray-800: #2d3748;
+            --gray-600: #718096;
+            --gray-400: #a0aec0;
+            --gray-200: #e2e8f0;
+            --gray-100: #f7fafc;
+            --white: #ffffff;
+            --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px rgba(0,0,0,0.15);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 30px;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -22,147 +47,253 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(145deg, #f6f9fc 0%, #edf2f7 100%);
+            color: var(--dark);
             line-height: 1.6;
-            color: #2d3748;
-            padding: 0;
-            margin: 0;
+            padding-top: 80px; /* Space for fixed header */
+        }
+
+        /* Sticky Header Navigation */
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 32, 44, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .header-logo i {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-logo span {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .header-logo small {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            font-weight: 400;
+            margin-left: 0.5rem;
+        }
+
+        /* Desktop Navigation */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-item {
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.6rem 1rem;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+        }
+
+        .nav-item i {
+            font-size: 1rem;
+        }
+
+        .nav-item:hover {
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav-item.active {
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 4px 10px rgba(102,126,234,0.3);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: var(--dark);
+            padding: 1rem;
+            box-shadow: var(--shadow-lg);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            z-index: 999;
+            max-height: calc(100vh - 70px);
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+        }
+
+        .mobile-nav-item {
+            color: var(--gray-400);
+            text-decoration: none;
+            padding: 1rem 0.8rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--radius-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-item i {
+            font-size: 1.4rem;
+        }
+
+        .mobile-nav-item:hover,
+        .mobile-nav-item.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
         }
 
         .handbook-wrapper {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 1.5rem 2rem;
         }
 
-        /* Glassmorphism Card Effect */
+        /* Responsive Container */
+        @media (max-width: 1024px) {
+            .handbook-wrapper {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            .sticky-header {
+                padding: 0.6rem 1rem;
+            }
+            
+            .header-logo span {
+                font-size: 1rem;
+            }
+            
+            .header-logo small {
+                display: none;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .handbook-wrapper {
+                padding: 0.8rem;
+            }
+        }
+
+        /* Glass Card Effect */
         .glass-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
             padding: 2rem;
             margin-bottom: 2rem;
             border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            scroll-margin-top: 90px; /* For smooth scrolling with fixed header */
+        }
+
+        .glass-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (max-width: 768px) {
+            .glass-card {
+                padding: 1.2rem;
+                margin-bottom: 1.2rem;
+                border-radius: var(--radius-md);
+                scroll-margin-top: 80px;
+            }
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(120deg, #1a202c 0%, #2d3748 100%);
+            background: linear-gradient(145deg, var(--dark), #2d3748);
             color: white;
-            padding: 4rem 2rem;
-            border-radius: 30px;
+            padding: 3rem 2rem;
+            border-radius: var(--radius-xl);
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: "🎯";
-            position: absolute;
-            right: -50px;
-            bottom: -50px;
-            font-size: 300px;
-            opacity: 0.05;
-            transform: rotate(-10deg);
-        }
-
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ffe66d);
+            background: linear-gradient(45deg, var(--accent), #4ecdc4, #ffe66d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .hero-badges {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin: 2rem 0;
-        }
-
-        .hero-badge {
-            background: rgba(255,255,255,0.1);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        /* Table of Contents */
-        .toc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .toc-item {
-            background: #f7fafc;
-            padding: 1rem;
-            border-radius: 12px;
-            border-left: 4px solid #667eea;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .toc-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            background: white;
-        }
-
-        .toc-icon {
-            font-size: 1.5rem;
-            min-width: 40px;
-            text-align: center;
-        }
-
-        .toc-level {
-            background: #667eea;
-            color: white;
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-left: 1rem;
-        }
-
-        /* Code Blocks */
-        pre {
-            background: #1a1e24 !important;
-            border-radius: 16px !important;
-            padding: 1.5rem !important;
-            margin: 1.5rem 0 !important;
-            overflow-x: auto;
-            position: relative;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        pre code {
-            font-family: 'Fira Code', monospace !important;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            color: #e2e8f0;
-        }
-
-        .code-header {
-            background: #0f1116;
-            color: #e2e8f0;
-            padding: 0.5rem 1rem;
-            border-radius: 8px 8px 0 0;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
         }
 
         /* Section Headers */
@@ -170,150 +301,149 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             padding-bottom: 1rem;
-            border-bottom: 3px solid #667eea;
+            border-bottom: 3px solid var(--primary);
         }
 
         .section-icon {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 15px;
+            border-radius: var(--radius-md);
             box-shadow: 0 10px 20px rgba(102,126,234,0.3);
         }
 
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a202c;
-        }
-
-        /* Command Cards */
-        .command-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .command-card {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 1.2rem;
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
-        }
-
-        .command-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
-            border-color: #667eea;
-        }
-
-        .command-card code {
-            background: #2d3748;
-            color: #e2e8f0;
-            padding: 0.3rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Checklist */
-        .checklist {
-            list-style: none;
-        }
-
-        .checklist li {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .checklist li i {
-            color: #48bb78;
-        }
-
-        /* Author Section */
-        .author-card {
-            background: linear-gradient(135deg, #1a202c, #2d3748);
-            color: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .author-avatar {
-            font-size: 5rem;
-            margin-bottom: 1rem;
-        }
-
-        .author-social {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .author-social a {
-            color: white;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .author-social a:hover {
-            transform: translateY(-5px);
-            color: #ff6b6b;
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: transparent;
-            z-index: 1000;
-        }
-
-        .progress-bar {
-            height: 4px;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ffe66d);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .handbook-wrapper {
-                padding: 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .section-title {
+            .section-icon {
+                width: 45px;
+                height: 45px;
                 font-size: 1.5rem;
             }
             
-            .toc-grid {
-                grid-template-columns: 1fr;
+            .section-title {
+                font-size: 1.4rem;
             }
         }
 
-        /* Animations */
+        /* Code Blocks */
+        pre {
+            background: #1a1e24 !important;
+            border-radius: var(--radius-md) !important;
+            padding: 1.2rem !important;
+            margin: 1.2rem 0 !important;
+            overflow-x: auto;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.1);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        pre code {
+            font-family: 'Fira Code', monospace !important;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #e2e8f0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        /* Responsive Grids */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .command-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.2rem;
+        }
+
+        @media (max-width: 640px) {
+            .toc-grid,
+            .command-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            border: none;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Mobile Table */
+        @media (max-width: 640px) {
+            .modern-table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                font-size: 0.9rem;
+            }
+            
+            .modern-table td {
+                padding: 0.8rem;
+            }
+            
+            .modern-table code {
+                font-size: 0.75rem;
+                padding: 0.2rem 0.4rem;
+            }
+        }
+
+        /* Active section highlight */
+        .section-highlight {
+            animation: pulse 1s ease-out;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(102,126,234,0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(102,126,234,0); }
+            100% { box-shadow: 0 0 0 0 rgba(102,126,234,0); }
+        }
+
+        /* Loading Animation */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -329,231 +459,261 @@
             animation: fadeInUp 0.6s ease-out;
         }
 
-        /* Tooltips */
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: help;
-            border-bottom: 1px dashed #667eea;
-        }
-
-        .tooltip .tooltip-text {
-            visibility: hidden;
-            width: 200px;
-            background-color: #1a202c;
-            color: #fff;
-            text-align: center;
-            padding: 0.5rem;
-            border-radius: 6px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -100px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .tooltip:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        /* Table Styles */
-        .modern-table {
-            width: 100%;
-            border-collapse: collapse;
+        /* Badge Responsive */
+        .hero-badges {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
             margin: 1.5rem 0;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        .modern-table th {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 1rem;
-            font-weight: 600;
+        @media (max-width: 768px) {
+            .hero-badges {
+                gap: 0.5rem;
+            }
+            
+            .hero-badge {
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
+            }
         }
 
-        .modern-table td {
-            padding: 1rem;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .modern-table tr:hover {
-            background: #f7fafc;
-        }
-
-        /* Tags */
-        .tag {
-            display: inline-block;
-            padding: 0.2rem 1rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .tag-beginner { background: #c6f6d5; color: #22543d; }
-        .tag-intermediate { background: #feebc8; color: #744210; }
-        .tag-advanced { background: #fed7d7; color: #742a2a; }
-        .tag-critical { background: #fed7e2; color: #702459; }
-
-        /* Mermaid Diagram Fallback */
-        .mermaid-fallback {
-            background: #f8fafc;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            border: 2px dashed #667eea;
-        }
-
-        /* Copy Button */
-        .copy-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #2d3748;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-        }
-
-        .copy-btn:hover {
-            background: #667eea;
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-item,
+            .mobile-nav-item,
+            .toc-item,
+            .command-card,
+            .copy-btn {
+                -webkit-tap-highlight-color: rgba(102,126,234,0.3);
+            }
+            
+            pre {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="progress-container">
-    <div class="progress-bar" id="progressBar"></div>
-</div>
+<!-- Sticky Header Navigation -->
+<header class="sticky-header">
+    <div class="header-logo">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <span>DevOps Mastery <small>by Nov Hun</small></span>
+    </div>
+    
+    <!-- Desktop Navigation -->
+    <nav class="nav-menu">
+        <a href="#home" class="nav-item active" data-section="home">
+            <i class="fas fa-home"></i> Home
+        </a>
+        <a href="#ubuntu" class="nav-item" data-section="ubuntu">
+            <i class="fab fa-ubuntu"></i> Ubuntu
+        </a>
+        <a href="#git" class="nav-item" data-section="git">
+            <i class="fab fa-git-alt"></i> Git
+        </a>
+        <a href="#docker" class="nav-item" data-section="docker">
+            <i class="fab fa-docker"></i> Docker
+        </a>
+        <a href="#compose" class="nav-item" data-section="compose">
+            <i class="fas fa-cubes"></i> Compose
+        </a>
+        <a href="#nginx" class="nav-item" data-section="nginx">
+            <i class="fas fa-server"></i> Nginx
+        </a>
+        <a href="#kubernetes" class="nav-item" data-section="kubernetes">
+            <i class="fas fa-cubes"></i> K8s
+        </a>
+        <a href="#ansible" class="nav-item" data-section="ansible">
+            <i class="fab fa-ansible"></i> Ansible
+        </a>
+        <a href="#cicd" class="nav-item" data-section="cicd">
+            <i class="fas fa-arrows-rotate"></i> CI/CD
+        </a>
+        <a href="#cloud" class="nav-item" data-section="cloud">
+            <i class="fas fa-cloud"></i> Cloud
+        </a>
+        <a href="#security" class="nav-item" data-section="security">
+            <i class="fas fa-shield"></i> Security
+        </a>
+    </nav>
+    
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+</header>
+
+<!-- Mobile Navigation Menu -->
+<nav class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-grid">
+        <a href="#home" class="mobile-nav-item active" data-section="home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#ubuntu" class="mobile-nav-item" data-section="ubuntu">
+            <i class="fab fa-ubuntu"></i>
+            <span>Ubuntu</span>
+        </a>
+        <a href="#git" class="mobile-nav-item" data-section="git">
+            <i class="fab fa-git-alt"></i>
+            <span>Git</span>
+        </a>
+        <a href="#docker" class="mobile-nav-item" data-section="docker">
+            <i class="fab fa-docker"></i>
+            <span>Docker</span>
+        </a>
+        <a href="#compose" class="mobile-nav-item" data-section="compose">
+            <i class="fas fa-cubes"></i>
+            <span>Compose</span>
+        </a>
+        <a href="#nginx" class="mobile-nav-item" data-section="nginx">
+            <i class="fas fa-server"></i>
+            <span>Nginx</span>
+        </a>
+        <a href="#kubernetes" class="mobile-nav-item" data-section="kubernetes">
+            <i class="fas fa-cubes"></i>
+            <span>K8s</span>
+        </a>
+        <a href="#ansible" class="mobile-nav-item" data-section="ansible">
+            <i class="fab fa-ansible"></i>
+            <span>Ansible</span>
+        </a>
+        <a href="#cicd" class="mobile-nav-item" data-section="cicd">
+            <i class="fas fa-arrows-rotate"></i>
+            <span>CI/CD</span>
+        </a>
+        <a href="#cloud" class="mobile-nav-item" data-section="cloud">
+            <i class="fas fa-cloud"></i>
+            <span>Cloud</span>
+        </a>
+        <a href="#security" class="mobile-nav-item" data-section="security">
+            <i class="fas fa-shield"></i>
+            <span>Security</span>
+        </a>
+        <a href="#cheatsheet" class="mobile-nav-item" data-section="cheatsheet">
+            <i class="fas fa-terminal"></i>
+            <span>Cheatsheet</span>
+        </a>
+        <a href="#author" class="mobile-nav-item" data-section="author">
+            <i class="fas fa-user"></i>
+            <span>Author</span>
+        </a>
+    </div>
+</nav>
 
 <div class="handbook-wrapper">
     
-    <!-- HERO SECTION -->
-    <div class="hero glass-card">
-        <h1>🚀 DEVOPS & CLOUD <br>MASTERY HANDBOOK</h1>
-        <p style="font-size: 1.2rem; color: #e2e8f0; margin-bottom: 1rem;">From Zero to Hero: Infrastructure, Automation & Scalability</p>
+    <!-- HOME SECTION -->
+    <section id="home" class="hero glass-card" data-section="home">
+        <h1>🚀 DEVOPS & CLOUD MASTERY</h1>
+        <p style="font-size: 1.2rem; color: var(--gray-400); margin-bottom: 1rem;">From Zero to Hero: Infrastructure, Automation & Scalability</p>
         
         <div class="hero-badges">
-            <span class="hero-badge">🐳 Docker</span>
-            <span class="hero-badge">☸️ Kubernetes</span>
-            <span class="hero-badge">📜 Ansible</span>
-            <span class="hero-badge">🔧 CI/CD</span>
-            <span class="hero-badge">☁️ Cloud</span>
-            <span class="hero-badge">🛡️ Security</span>
+            <span class="hero-badge"><i class="fab fa-docker"></i> Docker</span>
+            <span class="hero-badge"><i class="fas fa-cubes"></i> Kubernetes</span>
+            <span class="hero-badge"><i class="fab fa-ansible"></i> Ansible</span>
+            <span class="hero-badge"><i class="fas fa-arrows-rotate"></i> CI/CD</span>
+            <span class="hero-badge"><i class="fas fa-cloud"></i> Cloud</span>
+            <span class="hero-badge"><i class="fas fa-shield"></i> Security</span>
         </div>
         
-        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-            <span style="color: #a0aec0;"><i class="fas fa-user"></i> Nov Hun</span>
-            <span style="color: #a0aec0;"><i class="fas fa-map-marker-alt"></i> Phnom Penh, Cambodia 🇰🇭</span>
-            <span style="color: #a0aec0;"><i class="fas fa-calendar"></i> 2025 Edition</span>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+            <span style="color: var(--gray-400);"><i class="fas fa-user"></i> Nov Hun</span>
+            <span style="color: var(--gray-400);"><i class="fas fa-map-marker-alt"></i> Phnom Penh, Cambodia 🇰🇭</span>
+            <span style="color: var(--gray-400);"><i class="fas fa-calendar"></i> 2025 Edition</span>
+            <span style="color: var(--gray-400);"><i class="fas fa-code-branch"></i> v2.1.0</span>
         </div>
-    </div>
+    </section>
     
     <!-- TABLE OF CONTENTS -->
-    <div class="glass-card">
+    <div class="glass-card" id="toc">
         <div class="section-header">
             <div class="section-icon"><i class="fas fa-list"></i></div>
             <h2 class="section-title">📋 Table of Contents</h2>
         </div>
         
         <div class="toc-grid">
-            <div class="toc-item">
-                <span class="toc-icon">🐧</span>
+            <div class="toc-item" onclick="location.href='#ubuntu'">
+                <span class="toc-icon"><i class="fab fa-ubuntu"></i></span>
                 <div><strong>Ubuntu Server</strong><br><small>System Hardening</small></div>
-                <span class="toc-level">Beginner</span>
+                <span class="toc-level" style="background: var(--primary);">Beginner</span>
             </div>
-            <div class="toc-item">
-                <span class="toc-icon">🔗</span>
+            <div class="toc-item" onclick="location.href='#git'">
+                <span class="toc-icon"><i class="fab fa-git-alt"></i></span>
                 <div><strong>Git Workflow</strong><br><small>Branching Strategies</small></div>
-                <span class="toc-level">Beginner</span>
+                <span class="toc-level" style="background: var(--primary);">Beginner</span>
             </div>
-            <div class="toc-item">
-                <span class="toc-icon">🐳</span>
+            <div class="toc-item" onclick="location.href='#docker'">
+                <span class="toc-icon"><i class="fab fa-docker"></i></span>
                 <div><strong>Docker</strong><br><small>Containerization</small></div>
-                <span class="toc-level">Intermediate</span>
+                <span class="toc-level" style="background: var(--warning);">Intermediate</span>
             </div>
-            <div class="toc-item">
-                <span class="toc-icon">⚙️</span>
+            <div class="toc-item" onclick="location.href='#compose'">
+                <span class="toc-icon"><i class="fas fa-cubes"></i></span>
                 <div><strong>Docker Compose</strong><br><small>Multi-Container</small></div>
-                <span class="toc-level">Intermediate</span>
+                <span class="toc-level" style="background: var(--warning);">Intermediate</span>
             </div>
-            <div class="toc-item">
-                <span class="toc-icon">🌐</span>
+            <div class="toc-item" onclick="location.href='#nginx'">
+                <span class="toc-icon"><i class="fas fa-server"></i></span>
                 <div><strong>Nginx</strong><br><small>Reverse Proxy</small></div>
-                <span class="toc-level">Intermediate</span>
+                <span class="toc-level" style="background: var(--warning);">Intermediate</span>
             </div>
-            <div class="toc-item">
-                <span class="toc-icon">☸️</span>
+            <div class="toc-item" onclick="location.href='#kubernetes'">
+                <span class="toc-icon"><i class="fas fa-cubes"></i></span>
                 <div><strong>Kubernetes</strong><br><small>Orchestration</small></div>
-                <span class="toc-level">Advanced</span>
+                <span class="toc-level" style="background: var(--danger);">Advanced</span>
             </div>
-            <div class="toc-item">
-                <span class="toc-icon">📜</span>
+            <div class="toc-item" onclick="location.href='#ansible'">
+                <span class="toc-icon"><i class="fab fa-ansible"></i></span>
                 <div><strong>Ansible</strong><br><small>Infrastructure as Code</small></div>
-                <span class="toc-level">Advanced</span>
+                <span class="toc-level" style="background: var(--danger);">Advanced</span>
             </div>
-            <div class="toc-item">
-                <span class="toc-icon">🔄</span>
+            <div class="toc-item" onclick="location.href='#cicd'">
+                <span class="toc-icon"><i class="fas fa-arrows-rotate"></i></span>
                 <div><strong>CI/CD</strong><br><small>GitHub Actions, Jenkins</small></div>
-                <span class="toc-level">Intermediate</span>
+                <span class="toc-level" style="background: var(--warning);">Intermediate</span>
             </div>
-            <div class="toc-item">
-                <span class="toc-icon">☁️</span>
+            <div class="toc-item" onclick="location.href='#cloud'">
+                <span class="toc-icon"><i class="fas fa-cloud"></i></span>
                 <div><strong>Cloud Storage</strong><br><small>S3 / R2</small></div>
-                <span class="toc-level">Intermediate</span>
+                <span class="toc-level" style="background: var(--warning);">Intermediate</span>
             </div>
-            <div class="toc-item">
-                <span class="toc-icon">🛡️</span>
+            <div class="toc-item" onclick="location.href='#security'">
+                <span class="toc-icon"><i class="fas fa-shield"></i></span>
                 <div><strong>Security</strong><br><small>Zero Trust</small></div>
-                <span class="toc-level">Critical</span>
+                <span class="toc-level" style="background: #97266d;">Critical</span>
             </div>
         </div>
     </div>
     
     <!-- 1️⃣ UBUNTU SERVER -->
-    <div class="glass-card">
+    <section id="ubuntu" class="glass-card" data-section="ubuntu">
         <div class="section-header">
-            <div class="section-icon">🐧</div>
+            <div class="section-icon"><i class="fab fa-ubuntu"></i></div>
             <h2 class="section-title">1. Ubuntu Server Essentials</h2>
         </div>
-        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>The Foundation of Every Production System</em></p>
+        <p style="margin-bottom: 1.5rem; color: var(--gray-600);"><em>The Foundation of Every Production System</em></p>
         
-        <h3 style="margin-bottom: 1rem;">📦 System Initialization & Hardening</h3>
-        
-        <div class="code-header">
-            <span><i class="fas fa-terminal"></i> Ubuntu Server Setup</span>
-            <span><i class="fas fa-copy copy-trigger"></i></span>
-        </div>
+        <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-download" style="color: var(--primary);"></i> System Initialization
+        </h3>
         <pre><code class="language-bash"># 🔄 Full system update & upgrade
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 
 # 🧰 Install essential toolkit
-sudo apt install -y \
-    git \
-    curl \
-    wget \
-    unzip \
-    htop \
-    net-tools \
-    vim \
-    tmux \
-    build-essential \
-    software-properties-common</code></pre>
+sudo apt install -y git curl wget unzip htop net-tools vim tmux \
+    build-essential software-properties-common</code></pre>
         
-        <h3 style="margin: 2rem 0 1rem;">👥 User Management & Access Control</h3>
+        <h3 style="margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-user-plus" style="color: var(--primary);"></i> User Management
+        </h3>
         <pre><code class="language-bash"># 🆕 Create deployment user
 sudo adduser --gecos "" devops
 sudo usermod -aG sudo devops
+sudo usermod -aG adm devops
 
 # 🔑 SSH key setup
 sudo mkdir -p /home/devops/.ssh
@@ -562,24 +722,28 @@ sudo chmod 700 /home/devops/.ssh
 sudo chmod 600 /home/devops/.ssh/authorized_keys
 sudo chown -R devops:devops /home/devops/.ssh</code></pre>
         
-        <h3 style="margin: 2rem 0 1rem;">🛡️ SSH Fortification</h3>
+        <h3 style="margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-shield-alt" style="color: var(--primary);"></i> SSH Hardening
+        </h3>
         <pre><code class="language-bash"># /etc/ssh/sshd_config
-# 🔐 Recommended secure configuration
-PermitRootLogin no                   # NEVER allow root login
-PasswordAuthentication no            # SSH keys ONLY
-PubkeyAuthentication yes            # Enable key-based auth
-MaxAuthTries 3                      # Limit brute force attempts
-ClientAliveInterval 300             # Drop inactive sessions
-ClientAliveCountMax 2              # Max keepalive messages</code></pre>
-    </div>
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+MaxAuthTries 3
+ClientAliveInterval 300
+ClientAliveCountMax 2
+
+# Restart SSH
+sudo systemctl restart sshd</code></pre>
+    </section>
     
     <!-- 2️⃣ GIT WORKFLOW -->
-    <div class="glass-card">
+    <section id="git" class="glass-card" data-section="git">
         <div class="section-header">
-            <div class="section-icon">🔗</div>
+            <div class="section-icon"><i class="fab fa-git-alt"></i></div>
             <h2 class="section-title">2. Git Workflow Mastery</h2>
         </div>
-        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>Version Control Done Right</em></p>
+        <p style="margin-bottom: 1.5rem; color: var(--gray-600);"><em>Version Control Done Right</em></p>
         
         <pre><code class="language-bash"># 👤 Identity setup
 git config --global user.name "Nov Hun"
@@ -588,225 +752,139 @@ git config --global init.defaultBranch main
 git config --global pull.rebase true
 
 # 🌿 Feature branch workflow
-git checkout -b feature/authentication-module
+git checkout -b feature/authentication
 git add .
 git commit -m "feat(auth): implement JWT authentication
 
 - Add JWT token generation and validation
 - Implement login/signup endpoints
-- Add password encryption with bcrypt
-- Write unit tests for auth service
+- Resolves: #42"
+git push -u origin feature/authentication
 
-Resolves: #42"
-git push -u origin feature/authentication-module
-
-# 📦 Tagging production releases
-git tag -a v1.2.0 -m "Release v1.2.0 - Stable API with rate limiting"
+# 📦 Tagging releases
+git tag -a v1.2.0 -m "Release v1.2.0"
 git push origin v1.2.0</code></pre>
-    </div>
+    </section>
     
     <!-- 3️⃣ DOCKER -->
-    <div class="glass-card">
+    <section id="docker" class="glass-card" data-section="docker">
         <div class="section-header">
-            <div class="section-icon">🐳</div>
+            <div class="section-icon"><i class="fab fa-docker"></i></div>
             <h2 class="section-title">3. Docker Containerization</h2>
         </div>
-        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>Build Once, Run Anywhere</em></p>
+        <p style="margin-bottom: 1.5rem; color: var(--gray-600);"><em>Build Once, Run Anywhere</em></p>
         
-        <h3 style="margin-bottom: 1rem;">⚡ Docker Engine Installation</h3>
-        <pre><code class="language-bash"># 📥 Install from official repository
+        <pre><code class="language-bash"># 📥 Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
-
-# 🚀 Post-installation steps
 sudo systemctl enable docker
-sudo systemctl start docker
 sudo usermod -aG docker $USER
 newgrp docker</code></pre>
         
-        <h3 style="margin: 2rem 0 1rem;">🏗️ Production-Ready Dockerfile</h3>
-        <pre><code class="language-dockerfile"># Multi-stage build for optimal image size
-FROM node:18-alpine AS builder
-
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-COPY . .
-
-# Production stage
-FROM node:18-alpine
-
+        <h3 style="margin: 2rem 0 1rem;">🏗️ Production Dockerfile</h3>
+        <pre><code class="language-dockerfile">FROM node:18-alpine
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
-
 WORKDIR /app
-COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
-COPY --chown=nextjs:nodejs /app .
-
+COPY --chown=nextjs:nodejs . .
 USER nextjs
-
 EXPOSE 3000
 CMD ["npm", "start"]</code></pre>
         
         <div class="command-grid">
             <div class="command-card">
-                <code>docker ps -a</code>
-                <p style="margin-top: 0.5rem; color: #4a5568;">List all containers</p>
+                <code><i class="fas fa-terminal"></i> docker ps -a</code>
+                <p>List containers</p>
             </div>
             <div class="command-card">
-                <code>docker build -t myapp .</code>
-                <p style="margin-top: 0.5rem; color: #4a5568;">Build image with tag</p>
+                <code><i class="fas fa-terminal"></i> docker build -t myapp .</code>
+                <p>Build image</p>
             </div>
             <div class="command-card">
-                <code>docker run -d -p 80:3000 myapp</code>
-                <p style="margin-top: 0.5rem; color: #4a5568;">Run container in background</p>
+                <code><i class="fas fa-terminal"></i> docker run -d -p 80:3000 myapp</code>
+                <p>Run container</p>
             </div>
             <div class="command-card">
-                <code>docker logs -f myapp --tail 100</code>
-                <p style="margin-top: 0.5rem; color: #4a5568;">View live logs</p>
+                <code><i class="fas fa-terminal"></i> docker logs -f myapp</code>
+                <p>View logs</p>
             </div>
         </div>
-    </div>
+    </section>
     
     <!-- 4️⃣ DOCKER COMPOSE -->
-    <div class="glass-card">
+    <section id="compose" class="glass-card" data-section="compose">
         <div class="section-header">
-            <div class="section-icon">⚙️</div>
+            <div class="section-icon"><i class="fas fa-cubes"></i></div>
             <h2 class="section-title">4. Docker Compose Orchestration</h2>
         </div>
-        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>Multi-Container Applications Made Simple</em></p>
+        <p style="margin-bottom: 1.5rem; color: var(--gray-600);"><em>Multi-Container Applications Made Simple</em></p>
         
-        <pre><code class="language-yaml"># docker-compose.yml
-version: '3.8'
-
+        <pre><code class="language-yaml">version: '3.8'
 services:
-  # 🌐 Frontend service
   frontend:
     build: ./frontend
-    container_name: react-app
-    ports:
-      - "3000:3000"
-    environment:
-      - REACT_APP_API_URL=http://localhost:8000
-    depends_on:
-      - backend
-    networks:
-      - app-network
-
-  # ⚙️ Backend API
+    ports: ["3000:3000"]
   backend:
     build: ./backend
-    container_name: node-api
-    ports:
-      - "8000:8000"
-    environment:
-      - NODE_ENV=production
-    depends_on:
-      - postgres
-      - redis
-    networks:
-      - app-network
-
-  # 🗄️ Database
+    ports: ["8000:8000"]
   postgres:
     image: postgres:15-alpine
-    container_name: postgres-db
-    environment:
-      - POSTGRES_DB=myapp
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    networks:
-      - app-network
-
-volumes:
-  postgres-data:
-
-networks:
-  app-network:
-    driver: bridge</code></pre>
+    volumes: [postgres-data:/var/lib/postgresql/data]
+volumes: postgres-data:</code></pre>
         
         <div class="command-grid">
             <div class="command-card">
                 <code>docker-compose up -d</code>
-                <p style="margin-top: 0.5rem; color: #4a5568;">Start all services</p>
-            </div>
-            <div class="command-card">
-                <code>docker-compose logs -f</code>
-                <p style="margin-top: 0.5rem; color: #4a5568;">View aggregated logs</p>
+                <p>Start services</p>
             </div>
             <div class="command-card">
                 <code>docker-compose down -v</code>
-                <p style="margin-top: 0.5rem; color: #4a5568;">Stop and remove volumes</p>
+                <p>Stop & remove</p>
             </div>
         </div>
-    </div>
+    </section>
     
     <!-- 5️⃣ NGINX -->
-    <div class="glass-card">
+    <section id="nginx" class="glass-card" data-section="nginx">
         <div class="section-header">
-            <div class="section-icon">🌐</div>
-            <h2 class="section-title">5. Nginx Reverse Proxy & Load Balancing</h2>
+            <div class="section-icon"><i class="fas fa-server"></i></div>
+            <h2 class="section-title">5. Nginx Reverse Proxy</h2>
         </div>
-        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>The Ultimate Web Server & Gateway</em></p>
+        <p style="margin-bottom: 1.5rem; color: var(--gray-600);"><em>The Ultimate Web Server & Gateway</em></p>
         
-        <pre><code class="language-nginx"># /etc/nginx/sites-available/production-app
-upstream backend_cluster {
+        <pre><code class="language-nginx">upstream backend {
     least_conn;
     server backend1:3000 weight=3;
     server backend2:3000 weight=2;
-    server backend3:3000 backup;
-    keepalive 32;
 }
 
 server {
     listen 443 ssl http2;
     server_name api.novhun.dev;
-
-    # SSL Configuration
-    ssl_certificate /etc/letsencrypt/live/api.novhun.dev/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/api.novhun.dev/privkey.pem;
-    
-    # Security headers
-    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-    add_header X-Frame-Options "SAMEORIGIN" always;
     
     location /api/ {
-        proxy_pass http://backend_cluster/;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
+        proxy_pass http://backend/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
 }</code></pre>
-        
-        <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem;">
-            <h4 style="margin-bottom: 0.5rem;"><i class="fas fa-link" style="color: #3182ce;"></i> Enable Site</h4>
-            <pre><code class="language-bash">sudo ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl reload nginx</code></pre>
-        </div>
-    </div>
+    </section>
     
     <!-- 6️⃣ KUBERNETES -->
-    <div class="glass-card">
+    <section id="kubernetes" class="glass-card" data-section="kubernetes">
         <div class="section-header">
-            <div class="section-icon">☸️</div>
+            <div class="section-icon"><i class="fas fa-cubes"></i></div>
             <h2 class="section-title">6. Kubernetes Orchestration</h2>
         </div>
-        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>Enterprise-Grade Container Orchestration</em></p>
+        <p style="margin-bottom: 1.5rem; color: var(--gray-600);"><em>Enterprise-Grade Container Orchestration</em></p>
         
-        <pre><code class="language-yaml"># deployment.yaml
-apiVersion: apps/v1
+        <pre><code class="language-yaml">apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web-app
-  namespace: production
 spec:
   replicas: 5
   strategy:
-    type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 0
@@ -823,492 +901,375 @@ spec:
         image: novhun/web-app:latest
         ports:
         - containerPort: 3000
-        env:
-        - name: NODE_ENV
-          value: "production"
         resources:
-          requests:
-            memory: "128Mi"
-            cpu: "100m"
           limits:
             memory: "512Mi"
-            cpu: "500m"
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 3000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: web-app-service
-spec:
-  type: LoadBalancer
-  selector:
-    app: web-app
-  ports:
-  - port: 80
-    targetPort: 3000</code></pre>
+            cpu: "500m"</code></pre>
         
         <div class="command-grid">
             <div class="command-card">
-                <code>kubectl get nodes</code>
-                <p>List cluster nodes</p>
+                <code>kubectl get pods</code>
+                <p>List pods</p>
             </div>
             <div class="command-card">
                 <code>kubectl apply -f deploy.yaml</code>
-                <p>Deploy application</p>
+                <p>Deploy app</p>
             </div>
             <div class="command-card">
                 <code>kubectl rollout status deploy/web-app</code>
-                <p>Check deployment status</p>
-            </div>
-            <div class="command-card">
-                <code>kubectl logs -f deploy/web-app</code>
-                <p>Stream container logs</p>
+                <p>Check status</p>
             </div>
         </div>
-    </div>
+    </section>
     
     <!-- 7️⃣ ANSIBLE -->
-    <div class="glass-card">
+    <section id="ansible" class="glass-card" data-section="ansible">
         <div class="section-header">
-            <div class="section-icon">📜</div>
+            <div class="section-icon"><i class="fab fa-ansible"></i></div>
             <h2 class="section-title">7. Ansible Automation</h2>
         </div>
-        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>Infrastructure as Code at Scale</em></p>
+        <p style="margin-bottom: 1.5rem; color: var(--gray-600);"><em>Infrastructure as Code at Scale</em></p>
         
-        <h4 style="margin-bottom: 1rem;">📋 Production Inventory</h4>
-        <pre><code class="language-ini"># inventory/production.ini
-[webservers]
-web-01 ansible_host=10.0.1.10 ansible_user=devops
-web-02 ansible_host=10.0.1.11 ansible_user=devops
-
-[databases]
-db-01 ansible_host=10.0.2.10 ansible_user=devops
-
-[all:vars]
-ansible_python_interpreter=/usr/bin/python3</code></pre>
-        
-        <h4 style="margin: 2rem 0 1rem;">🎭 Advanced Playbook</h4>
-        <pre><code class="language-yaml">---
-- name: 🚀 Production Deployment Playbook
+        <pre><code class="language-yaml">- name: Deploy Application
   hosts: webservers
   become: yes
   tasks:
-    - name: 📦 Install Docker
+    - name: Install Docker
       apt:
         name: docker.io
         state: present
-    
-    - name: 🐳 Start Docker service
+    - name: Start Docker
       systemd:
         name: docker
         state: started
-        enabled: yes
-    
-    - name: 🎯 Deploy application
+    - name: Run container
       docker_container:
         name: web-app
         image: novhun/web-app:latest
-        state: started
-        ports:
-          - "3000:3000"</code></pre>
-    </div>
+        ports: "3000:3000"</code></pre>
+    </section>
     
     <!-- 8️⃣ CI/CD -->
-    <div class="glass-card">
+    <section id="cicd" class="glass-card" data-section="cicd">
         <div class="section-header">
-            <div class="section-icon">🔄</div>
+            <div class="section-icon"><i class="fas fa-arrows-rotate"></i></div>
             <h2 class="section-title">8. CI/CD Pipelines</h2>
         </div>
-        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>Automated Testing & Deployment</em></p>
+        <p style="margin-bottom: 1.5rem; color: var(--gray-600);"><em>Automated Testing & Deployment</em></p>
         
-        <h4 style="margin-bottom: 1rem;">🤖 GitHub Actions Advanced Pipeline</h4>
-        <pre><code class="language-yaml"># .github/workflows/cd-pipeline.yml
-name: 🚀 Production Deployment Pipeline
-
+        <pre><code class="language-yaml">name: Deploy
 on:
   push:
-    branches: [ main ]
-    tags: [ 'v*' ]
-
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-
+    branches: [main]
 jobs:
-  test:
-    name: 🧪 Test & Lint
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-      - run: npm ci
-      - run: npm test
-      
-  build:
-    name: 🐳 Build & Push
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: docker/login-action@v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker/build-push-action@v5
-        with:
-          push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest</code></pre>
+    - uses: actions/checkout@v4
+    - uses: docker/login-action@v3
+    - run: docker build -t myapp .
+    - run: docker push myapp</code></pre>
         
-        <h4 style="margin: 2rem 0 1rem;">📊 Jenkins Pipeline</h4>
-        <pre><code class="language-groovy">// Jenkinsfile
-pipeline {
+        <h3 style="margin: 2rem 0 1rem;">📊 Jenkins Pipeline</h3>
+        <pre><code class="language-groovy">pipeline {
     agent any
     stages {
         stage('Build') {
-            steps {
-                echo 'Building application...'
-                sh 'docker build -t myapp:latest .'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
-                sh 'npm test'
-            }
+            steps { sh 'docker build -t myapp .' }
         }
         stage('Deploy') {
-            steps {
-                echo 'Deploying to production...'
-                sh 'kubectl apply -f deployment.yaml'
-            }
+            steps { sh 'kubectl apply -f deploy.yaml' }
         }
     }
 }</code></pre>
-    </div>
+    </section>
     
     <!-- 9️⃣ CLOUD STORAGE -->
-    <div class="glass-card">
+    <section id="cloud" class="glass-card" data-section="cloud">
         <div class="section-header">
-            <div class="section-icon">☁️</div>
+            <div class="section-icon"><i class="fas fa-cloud"></i></div>
             <h2 class="section-title">9. Cloud Storage Mastery</h2>
         </div>
-        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>AWS S3 & Cloudflare R2 Integration</em></p>
+        <p style="margin-bottom: 1.5rem; color: var(--gray-600);"><em>AWS S3 & Cloudflare R2 Integration</em></p>
         
-        <pre><code class="language-bash"># 📦 AWS CLI Installation
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
+        <pre><code class="language-bash"># AWS CLI
+aws s3 cp backup.sql s3://production-backups/ --sse AES256
+aws s3 sync dist/ s3://myapp-static-bucket/ --delete
 
-# 📤 Upload with encryption
-aws s3 cp ./backup.sql s3://production-backups/ \
-  --sse AES256 \
-  --storage-class STANDARD_IA
-
-# 🔄 Sync with delete option
-aws s3 sync ./dist/ s3://myapp-static-bucket/ \
-  --delete \
-  --cache-control "max-age=3600"</code></pre>
-        
-        <div style="background: linear-gradient(135deg, #667eea10, #764ba210); padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem;">
-            <h4 style="margin-bottom: 0.5rem; color: #5a67d8;">⚡ Cloudflare R2</h4>
-            <pre><code class="language-bash"># Create bucket
+# Cloudflare R2
 wrangler r2 bucket create production-assets
-
-# Upload file
-wrangler r2 object put production-assets/config.json \
-  --file ./config.json
-
-# Generate presigned URL
-wrangler r2 object sign production-assets/report.pdf \
-  --duration 3600</code></pre>
-        </div>
-    </div>
+wrangler r2 object put production-assets/config.json --file ./config.json</code></pre>
+    </section>
     
     <!-- 🔟 SECURITY -->
-    <div class="glass-card">
+    <section id="security" class="glass-card" data-section="security">
         <div class="section-header">
-            <div class="section-icon">🛡️</div>
-            <h2 class="section-title">10. Security Hardening & Best Practices</h2>
+            <div class="section-icon"><i class="fas fa-shield"></i></div>
+            <h2 class="section-title">10. Security Hardening</h2>
         </div>
-        <p style="margin-bottom: 1.5rem; color: #4a5568;"><em>Zero Trust Security Architecture</em></p>
+        <p style="margin-bottom: 1.5rem; color: var(--gray-600);"><em>Zero Trust Security Architecture</em></p>
         
-        <h4 style="margin-bottom: 1rem;">🔐 System Hardening Script</h4>
         <pre><code class="language-bash">#!/bin/bash
-# security-hardening.sh
-
-# 1️⃣ Firewall configuration
 sudo ufw default deny incoming
-sudo ufw default allow outgoing
 sudo ufw allow ssh
 sudo ufw --force enable
 
-# 2️⃣ Fail2ban installation
 sudo apt install fail2ban -y
 sudo systemctl enable fail2ban
-sudo systemctl start fail2ban
 
-# 3️⃣ Automatic security updates
 sudo apt install unattended-upgrades -y
-sudo dpkg-reconfigure -plow unattended-upgrades
-
-echo "✅ System hardening complete!"</code></pre>
+echo "✅ System hardened!"</code></pre>
         
-        <h4 style="margin: 2rem 0 1rem;">✅ Production Security Checklist</h4>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 12px;">
-                <h5 style="margin-bottom: 1rem; color: #2d3748;">🖥️ Server Level</h5>
-                <ul class="checklist">
-                    <li><i class="fas fa-check-circle"></i> SSH root login disabled</li>
-                    <li><i class="fas fa-check-circle"></i> Password authentication disabled</li>
-                    <li><i class="fas fa-check-circle"></i> Fail2ban configured</li>
-                    <li><i class="fas fa-check-circle"></i> UFW firewall active</li>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+            <div style="background: var(--gray-100); padding: 1.5rem; border-radius: var(--radius-md);">
+                <h4><i class="fas fa-check-circle" style="color: var(--success);"></i> Server Security</h4>
+                <ul style="list-style: none; margin-top: 1rem;">
+                    <li style="margin-bottom: 0.5rem;">✓ Root login disabled</li>
+                    <li style="margin-bottom: 0.5rem;">✓ SSH keys only</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Firewall enabled</li>
                 </ul>
             </div>
-            
-            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 12px;">
-                <h5 style="margin-bottom: 1rem; color: #2d3748;">🐳 Container Level</h5>
-                <ul class="checklist">
-                    <li><i class="fas fa-check-circle"></i> Running as non-root user</li>
-                    <li><i class="fas fa-check-circle"></i> Read-only root filesystem</li>
-                    <li><i class="fas fa-check-circle"></i> Resource limits configured</li>
-                    <li><i class="fas fa-check-circle"></i> No privileged containers</li>
-                </ul>
-            </div>
-            
-            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 12px;">
-                <h5 style="margin-bottom: 1rem; color: #2d3748;">🌐 Network Level</h5>
-                <ul class="checklist">
-                    <li><i class="fas fa-check-circle"></i> TLS 1.3 only</li>
-                    <li><i class="fas fa-check-circle"></i> HSTS enabled</li>
-                    <li><i class="fas fa-check-circle"></i> Rate limiting configured</li>
-                    <li><i class="fas fa-check-circle"></i> Network policies active</li>
+            <div style="background: var(--gray-100); padding: 1.5rem; border-radius: var(--radius-md);">
+                <h4><i class="fas fa-check-circle" style="color: var(--success);"></i> Container Security</h4>
+                <ul style="list-style: none; margin-top: 1rem;">
+                    <li style="margin-bottom: 0.5rem;">✓ Non-root user</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Resource limits</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Read-only FS</li>
                 </ul>
             </div>
         </div>
-    </div>
+    </section>
+    
+    <!-- CHEAT SHEET -->
+    <section id="cheatsheet" class="glass-card" data-section="cheatsheet">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-terminal"></i></div>
+            <h2 class="section-title">Production Command Cheat Sheet</h2>
+        </div>
+        
+        <div style="overflow-x: auto;">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Command</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i class="fab fa-ubuntu"></i> Ubuntu</td>
+                        <td><code>sudo journalctl -u docker -f</code></td>
+                        <td>Docker logs</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fab fa-docker"></i> Docker</td>
+                        <td><code>docker system df</code></td>
+                        <td>Disk usage</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-cubes"></i> K8s</td>
+                        <td><code>kubectl top pods</code></td>
+                        <td>Pod metrics</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-cloud"></i> AWS</td>
+                        <td><code>aws s3 ls --human-readable</code></td>
+                        <td>List buckets</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
     
     <!-- DEVOPS WORKFLOW -->
     <div class="glass-card">
         <div class="section-header">
-            <div class="section-icon">🎯</div>
+            <div class="section-icon"><i class="fas fa-diagram-project"></i></div>
             <h2 class="section-title">Complete DevOps Workflow</h2>
         </div>
         
-        <div class="mermaid-fallback">
-            <div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 1rem;">
-                <span style="padding: 0.8rem 1.5rem; background: #667eea; color: white; border-radius: 30px;">💻 Code</span>
-                <span style="padding: 0.8rem 1.5rem; background: #4ecdc4; color: white; border-radius: 30px;">→ 📦 Git</span>
-                <span style="padding: 0.8rem 1.5rem; background: #ff6b6b; color: white; border-radius: 30px;">→ 🤖 CI/CD</span>
-                <span style="padding: 0.8rem 1.5rem; background: #ffe66d; color: #1a202c; border-radius: 30px;">→ 🐳 Docker</span>
-                <span style="padding: 0.8rem 1.5rem; background: #a0aec0; color: white; border-radius: 30px;">→ ☸️ K8s</span>
-                <span style="padding: 0.8rem 1.5rem; background: #48bb78; color: white; border-radius: 30px;">→ 🌐 Nginx</span>
-                <span style="padding: 0.8rem 1.5rem; background: #9f7aea; color: white; border-radius: 30px;">→ ☁️ Cloud</span>
-            </div>
-            <p style="margin-top: 2rem; color: #4a5568; font-style: italic;">Continuous Integration • Continuous Deployment • Continuous Monitoring</p>
-        </div>
-    </div>
-    
-    <!-- COMMAND CHEAT SHEET -->
-    <div class="glass-card">
-        <div class="section-header">
-            <div class="section-icon">📚</div>
-            <h2 class="section-title">Production Command Cheat Sheet</h2>
-        </div>
-        
-        <table class="modern-table">
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Command</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>🐧 Ubuntu</td>
-                    <td><code style="background: #2d3748; color: white;">sudo journalctl -u docker -f</code></td>
-                    <td>View Docker daemon logs</td>
-                </tr>
-                <tr>
-                    <td>🔗 Git</td>
-                    <td><code style="background: #2d3748; color: white;">git bisect start</code></td>
-                    <td>Find breaking changes</td>
-                </tr>
-                <tr>
-                    <td>🐳 Docker</td>
-                    <td><code style="background: #2d3748; color: white;">docker system df</code></td>
-                    <td>Show disk usage</td>
-                </tr>
-                <tr>
-                    <td>☸️ K8s</td>
-                    <td><code style="background: #2d3748; color: white;">kubectl top pods</code></td>
-                    <td>Show pod metrics</td>
-                </tr>
-                <tr>
-                    <td>📜 Ansible</td>
-                    <td><code style="background: #2d3748; color: white;">ansible all -m ping</code></td>
-                    <td>Test connectivity</td>
-                </tr>
-                <tr>
-                    <td>☁️ Cloud</td>
-                    <td><code style="background: #2d3748; color: white;">aws s3 ls --human-readable</code></td>
-                    <td>List buckets with size</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    
-    <!-- CERTIFICATION ROADMAP -->
-    <div class="glass-card">
-        <div class="section-header">
-            <div class="section-icon">🏆</div>
-            <h2 class="section-title">Certification Roadmap</h2>
-        </div>
-        
-        <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
-            <div style="background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 600;">
-                📌 01. KCNA
-            </div>
-            <div style="background: linear-gradient(135deg, #34d399, #10b981); color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 600;">
-                📌 02. Terraform Associate
-            </div>
-            <div style="background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 600;">
-                📌 03. AWS Solutions Architect
-            </div>
-            <div style="background: linear-gradient(135deg, #f87171, #ef4444); color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 600;">
-                📌 04. CKA
-            </div>
-            <div style="background: linear-gradient(135deg, #c084fc, #a855f7); color: white; padding: 1rem 2rem; border-radius: 50px; font-weight: 600;">
-                📌 05. GitHub Actions
-            </div>
-        </div>
-    </div>
-    
-    <!-- PRO TIPS -->
-    <div class="glass-card">
-        <div class="section-header">
-            <div class="section-icon">💡</div>
-            <h2 class="section-title">Pro Tips</h2>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-            <div style="background: #fef3c7; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #f59e0b;">
-                <h4 style="margin-bottom: 0.5rem; color: #92400e;">🚀 One-liner Health Check</h4>
-                <pre style="margin: 0; background: #1a202c !important;"><code style="color: #e2e8f0;">curl -s https://api.novhun.dev/health | jq . && \
-  kubectl get pods -n production | grep -v Running</code></pre>
-            </div>
-            
-            <div style="background: #e6fffa; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #319795;">
-                <h4 style="margin-bottom: 0.5rem; color: #1e4e4b;">🔍 Debug Failing Pods</h4>
-                <pre style="margin: 0; background: #1a202c !important;"><code style="color: #e2e8f0;">kubectl get pods -n production | grep -v Running | \
-  xargs -I {} kubectl describe pod {} -n production</code></pre>
-            </div>
-        </div>
-    </div>
-    
-    <!-- DEVOPS MANIFESTO -->
-    <div class="glass-card">
-        <div class="section-header">
-            <div class="section-icon">🌟</div>
-            <h2 class="section-title">DevOps Manifesto</h2>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: center;">
-            <div>
-                <div style="font-size: 3rem; margin-bottom: 0.5rem;">🤝</div>
-                <h4>Collaboration</h4>
-                <p style="color: #718096;">over silos</p>
-            </div>
-            <div>
-                <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔄</div>
-                <h4>Automation</h4>
-                <p style="color: #718096;">over manual processes</p>
-            </div>
-            <div>
-                <div style="font-size: 3rem; margin-bottom: 0.5rem;">📊</div>
-                <h4>Metrics</h4>
-                <p style="color: #718096;">over intuition</p>
-            </div>
-            <div>
-                <div style="font-size: 3rem; margin-bottom: 0.5rem;">🚀</div>
-                <h4>Iteration</h4>
-                <p style="color: #718096;">over perfection</p>
-            </div>
-            <div>
-                <div style="font-size: 3rem; margin-bottom: 0.5rem;">🛡️</div>
-                <h4>Security</h4>
-                <p style="color: #718096;">integrated, not bolted on</p>
-            </div>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem;">
+            <span style="padding: 0.8rem 1.5rem; background: var(--primary); color: white; border-radius: 30px;">
+                <i class="fas fa-code"></i> Code
+            </span>
+            <span style="padding: 0.8rem 1.5rem; background: #4ecdc4; color: white; border-radius: 30px;">
+                <i class="fab fa-git-alt"></i> Git
+            </span>
+            <span style="padding: 0.8rem 1.5rem; background: var(--accent); color: white; border-radius: 30px;">
+                <i class="fas fa-arrows-rotate"></i> CI/CD
+            </span>
+            <span style="padding: 0.8rem 1.5rem; background: #ffe66d; color: var(--dark); border-radius: 30px;">
+                <i class="fab fa-docker"></i> Docker
+            </span>
+            <span style="padding: 0.8rem 1.5rem; background: var(--gray-600); color: white; border-radius: 30px;">
+                <i class="fas fa-cubes"></i> K8s
+            </span>
+            <span style="padding: 0.8rem 1.5rem; background: var(--success); color: white; border-radius: 30px;">
+                <i class="fas fa-server"></i> Nginx
+            </span>
+            <span style="padding: 0.8rem 1.5rem; background: #9f7aea; color: white; border-radius: 30px;">
+                <i class="fas fa-cloud"></i> Cloud
+            </span>
         </div>
     </div>
     
     <!-- AUTHOR SECTION -->
-    <div class="author-card">
-        <div class="author-avatar">👨‍💻</div>
-        <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Nov Hun</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 1rem; color: #e2e8f0;">Full Stack Developer • DevOps Engineer • Cloud Architect</p>
-        <p style="margin-bottom: 2rem; color: #a0aec0;">"Empowering teams with cloud-native solutions and automated infrastructure"</p>
-        
-        <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;">
-            <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1.5rem; border-radius: 50px; color: white;">🇰🇭 Cambodia</span>
-            <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1.5rem; border-radius: 50px; color: white;">5+ Years Experience</span>
-            <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1.5rem; border-radius: 50px; color: white;">Cloud Native Ambassador</span>
+    <section id="author" class="glass-card" data-section="author" style="background: linear-gradient(145deg, var(--dark), #2d3748); color: white;">
+        <div style="text-align: center; padding: 1rem;">
+            <div style="font-size: 5rem; margin-bottom: 1rem;">👨‍💻</div>
+            <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(45deg, var(--accent), #4ecdc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Nov Hun</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--gray-400);">Full Stack Developer • DevOps Engineer • Cloud Architect</p>
+            <p style="margin-bottom: 2rem; color: var(--gray-400);">"Empowering teams with cloud-native solutions and automated infrastructure"</p>
+            
+            <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1.5rem; border-radius: 50px;">🇰🇭 Cambodia</span>
+                <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1.5rem; border-radius: 50px;">5+ Years</span>
+                <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1.5rem; border-radius: 50px;">Cloud Native</span>
+            </div>
+            
+            <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+                <a href="https://github.com/novhun" style="color: white; font-size: 1.8rem;" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#" style="color: white; font-size: 1.8rem;" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="#" style="color: white; font-size: 1.8rem;" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+            
+            <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 2rem 0;">
+            
+            <div style="display: flex; justify-content: space-between; color: var(--gray-400); font-size: 0.9rem; flex-wrap: wrap;">
+                <span><i class="fas fa-calendar"></i> Feb 2025</span>
+                <span><i class="fas fa-code-branch"></i> v2.1.0</span>
+                <span><i class="fas fa-check-circle"></i> Production Ready</span>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <p style="font-size: 1.5rem; font-weight: 700; background: linear-gradient(45deg, var(--accent), #4ecdc4, #ffe66d); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    "DevOps is culture 🚀"
+                </p>
+                <p style="color: var(--gray-400); margin-top: 0.5rem;">Keep learning, keep shipping! 💪</p>
+                <p style="color: var(--accent); margin-top: 1rem; font-size: 1.2rem;">⭐ Star this handbook!</p>
+            </div>
         </div>
-        
-        <div class="author-social">
-            <a href="https://github.com/novhun" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-        </div>
-        
-        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 2rem 0;">
-        
-        <div style="display: flex; justify-content: space-between; color: #a0aec0; font-size: 0.9rem;">
-            <span>📅 Last Updated: February 2025</span>
-            <span>📝 Version: 2.1.0</span>
-            <span>🎯 Status: Production Ready</span>
-        </div>
-        
-        <div style="margin-top: 2rem;">
-            <p style="font-size: 1.5rem; font-weight: 700; background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ffe66d); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                "DevOps is not a tool, it's a culture 🚀"
-            </p>
-            <p style="color: #e2e8f0; margin-top: 0.5rem;">Keep learning, keep shipping, keep improving! 💪</p>
-            <p style="color: #ff6b6b; margin-top: 1rem; font-size: 1.2rem;">⭐ Star this handbook if it helped you!</p>
-        </div>
-    </div>
-    
+    </section>
 </div>
+
+<!-- Scroll to Top Button -->
+<button class="scroll-top" id="scrollTopBtn">
+    <i class="fas fa-arrow-up"></i>
+</button>
 
 <script>
     // Initialize syntax highlighting
     hljs.highlightAll();
     
-    // Progress bar
-    window.onscroll = function() {
-        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        let scrolled = (winScroll / height) * 100;
-        document.getElementById("progressBar").style.width = scrolled + "%";
-    };
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileNav = document.getElementById('mobileNav');
     
-    // Copy button functionality
-    document.querySelectorAll('.copy-trigger').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const code = this.closest('.code-header').nextElementSibling.querySelector('code');
-            navigator.clipboard.writeText(code.innerText);
-            this.innerHTML = '<i class="fas fa-check"></i>';
-            setTimeout(() => { this.innerHTML = '<i class="fas fa-copy"></i>'; }, 2000);
+    mobileMenuToggle.addEventListener('click', function() {
+        mobileNav.classList.toggle('active');
+        const icon = this.querySelector('i');
+        if (mobileNav.classList.contains('active')) {
+            icon.className = 'fas fa-times';
+        } else {
+            icon.className = 'fas fa-bars';
+        }
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!mobileNav.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+            mobileNav.classList.remove('active');
+            mobileMenuToggle.querySelector('i').className = 'fas fa-bars';
+        }
+    });
+    
+    // Smooth scroll and active navigation
+    document.querySelectorAll('.nav-item, .mobile-nav-item, .toc-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get target section
+            const targetId = this.getAttribute('href') || `#${this.dataset.section}`;
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                // Smooth scroll
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Highlight section
+                targetSection.classList.add('section-highlight');
+                setTimeout(() => {
+                    targetSection.classList.remove('section-highlight');
+                }, 1000);
+                
+                // Update active states
+                updateActiveNav(targetId.substring(1));
+                
+                // Close mobile menu
+                mobileNav.classList.remove('active');
+                mobileMenuToggle.querySelector('i').className = 'fas fa-bars';
+            }
         });
     });
     
-    // Add copy buttons to code blocks
+    // Update active navigation based on scroll
+    function updateActiveNav(sectionId) {
+        // Desktop nav
+        document.querySelectorAll('.nav-item').forEach(nav => {
+            nav.classList.remove('active');
+            if (nav.dataset.section === sectionId) {
+                nav.classList.add('active');
+            }
+        });
+        
+        // Mobile nav
+        document.querySelectorAll('.mobile-nav-item').forEach(nav => {
+            nav.classList.remove('active');
+            if (nav.dataset.section === sectionId) {
+                nav.classList.add('active');
+            }
+        });
+    }
+    
+    // Scroll spy
+    window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('section[id]');
+        let currentSection = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+        
+        if (currentSection) {
+            updateActiveNav(currentSection);
+        }
+        
+        // Scroll to top button
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        if (window.scrollY > 500) {
+            scrollBtn.classList.add('show');
+        } else {
+            scrollBtn.classList.remove('show');
+        }
+    });
+    
+    // Scroll to top
+    document.getElementById('scrollTopBtn').addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Copy buttons
     document.querySelectorAll('pre').forEach(block => {
         const copyBtn = document.createElement('button');
         copyBtn.className = 'copy-btn';
@@ -1322,151 +1283,151 @@ echo "✅ System hardening complete!"</code></pre>
         block.appendChild(copyBtn);
     });
     
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-    
-    // Animate on scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animation = 'fadeInUp 0.6s ease-out';
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+    // Handle initial hash
+    if (window.location.hash) {
+        setTimeout(() => {
+            const element = document.querySelector(window.location.hash);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                element.classList.add('section-highlight');
+                setTimeout(() => element.classList.remove('section-highlight'), 1000);
+                updateActiveNav(window.location.hash.substring(1));
             }
-        });
-    }, observerOptions);
-    
-    document.querySelectorAll('.glass-card').forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        observer.observe(card);
-    });
+        }, 100);
+    }
 </script>
 
 <style>
-    /* Additional styles for better mobile responsiveness */
-    @media (max-width: 768px) {
-        .handbook-wrapper {
-            padding: 1rem;
-        }
-        
+    /* Additional mobile-optimized styles */
+    .toc-item {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .toc-item:active {
+        transform: scale(0.98);
+    }
+    
+    .hero-badge {
+        background: rgba(255,255,255,0.1);
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 500;
+        border: 1px solid rgba(255,255,255,0.2);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .command-card {
+        background: var(--gray-100);
+        padding: 1rem;
+        border-radius: var(--radius-sm);
+        transition: all 0.3s ease;
+    }
+    
+    .command-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+        background: white;
+    }
+    
+    .toc-level {
+        color: white;
+        padding: 0.2rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin-left: auto;
+        white-space: nowrap;
+    }
+    
+    @media (max-width: 480px) {
         .hero h1 {
-            font-size: 2rem;
-        }
-        
-        .hero-badges {
-            gap: 0.5rem;
-        }
-        
-        .hero-badge {
-            padding: 0.3rem 0.8rem;
-            font-size: 0.8rem;
+            font-size: 1.8rem;
         }
         
         .section-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
         
-        .section-icon {
-            width: 45px;
-            height: 45px;
-            font-size: 1.8rem;
+        .toc-item {
+            padding: 0.8rem;
         }
         
-        .modern-table {
-            display: block;
-            overflow-x: auto;
+        .toc-icon {
+            font-size: 1.2rem;
+            min-width: 30px;
         }
         
-        .author-card {
-            padding: 1.5rem;
+        .mobile-nav-grid {
+            grid-template-columns: repeat(3, 1fr);
         }
         
-        .author-avatar {
-            font-size: 3rem;
+        .mobile-nav-item {
+            padding: 0.8rem 0.4rem;
         }
         
-        .author-card h2 {
-            font-size: 1.8rem;
+        .mobile-nav-item i {
+            font-size: 1.2rem;
         }
+        
+        .mobile-nav-item span {
+            font-size: 0.7rem;
+        }
+    }
+    
+    /* Prevent body scroll when mobile menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
+    
+    /* Smooth transitions */
+    .mobile-nav {
+        transition: all 0.3s ease;
+        transform: translateY(-100%);
+    }
+    
+    .mobile-nav.active {
+        transform: translateY(0);
+    }
+    
+    /* Better touch targets */
+    .nav-item,
+    .mobile-nav-item,
+    .toc-item,
+    .command-card,
+    .copy-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Loading states */
+    .glass-card {
+        opacity: 1;
+        transition: opacity 0.3s ease;
     }
     
     /* Print styles */
     @media print {
+        .sticky-header,
+        .mobile-nav,
+        .scroll-top,
+        .copy-btn {
+            display: none !important;
+        }
+        
         body {
+            padding-top: 0;
             background: white;
         }
         
         .glass-card {
+            break-inside: avoid;
+            page-break-inside: avoid;
             box-shadow: none;
-            border: 1px solid #e2e8f0;
-            break-inside: avoid;
+            border: 1px solid #ddd;
         }
-        
-        .hero {
-            -webkit-text-fill-color: black;
-            color: black;
-            background: #f7fafc;
-        }
-        
-        .hero h1 {
-            -webkit-text-fill-color: #1a202c;
-        }
-        
-        .progress-container {
-            display: none;
-        }
-        
-        .copy-btn {
-            display: none;
-        }
-        
-        pre {
-            break-inside: avoid;
-        }
-    }
-    
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
-    }
-    
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        border-radius: 10px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(135deg, #764ba2, #667eea);
-    }
-    
-    /* Selection color */
-    ::selection {
-        background: #667eea;
-        color: white;
-    }
-    
-    /* Loading animation */
-    .glass-card {
-        transition: opacity 0.3s ease, transform 0.3s ease;
     }
 </style>
 
