@@ -41,7 +41,7 @@
 
 ### 💻 Development
 <p>
-  <img src="https://skillicons.dev/icons?i=nodejs,php,python,fastapi,dart,flutter,react,js,ts,go,dotnet,tailwind,html,css,bootstrap&perline=11" />
+  <img src="https://skillicons.dev/icons?i=nodejs,php,python,fastapi,dart,flutter,react,js,ts,go,dotnet,java,tailwind,html,css,bootstrap&perline=11" />
 </p>
 
 ### 🗄 Databases & Storage
